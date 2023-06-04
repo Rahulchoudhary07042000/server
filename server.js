@@ -43,6 +43,6 @@ io.on("connection",(socket)=>{
     console.log("disconnect");
    })
 })
-server.listen(80,()=>{
+server.listen(80,"0.0.0.0",()=>{
     console.log("server running ")
 })
