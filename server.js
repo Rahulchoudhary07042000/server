@@ -1,8 +1,8 @@
 const express =require("express");
 const app=express();
-const server=require('https').createServer(app);
+const server=require('http').createServer(app);
 const io=require("socket.io")(server,{
-    cors:{origin:"https://ssludo.com/"}
+    cors:{origin:"*"}
 });
 io.on("connection",(socket)=>{
    //just after connnection
