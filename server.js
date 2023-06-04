@@ -4,6 +4,9 @@ const server=require('http').createServer(app);
 const io=require("socket.io")(server,{
     cors:{origin:"*"}
 });
+app.get("/home",(req,res)=>{
+    res.send("hellow");
+});
 io.on("connection",(socket)=>{
    //just after connnection
    socket.emit('updateWallet');
