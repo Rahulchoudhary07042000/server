@@ -1,9 +1,18 @@
-const express =require("express");
-const app=express();
-const https = require('http');
-const server = https.createServer(app);
-const io=require("socket.io")(server,{
-    cors:{origin:"*"}
+const express = require("express");
+const https = require('https');
+const fs = require('fs');
+const options = {
+  key: fs.readFileSync('./etc/ssl/private/166.170.178.68.host.secureserver.net.key'),
+  cert: fs.readFileSync('./etc/ssl/certs/166.170.178.68.host.secureserver.net.crt'),
+  secureProtocol: 'TLS_method',
+  secureOptions: require('constants').SSL_OP_NO_TLSv1 | require('constants').SSL_OP_NO_TLSv1_1,
+};
+
+const app = express();
+
+const server = https.createServer(options, app);
+const io = require("socket.io")(server, {
+  cors: { origin: "*" }
 });
 io.on("connection",(socket)=>{
    //just after connnection
